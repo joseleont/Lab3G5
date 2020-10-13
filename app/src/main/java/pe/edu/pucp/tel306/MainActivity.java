@@ -21,11 +21,11 @@ import android.widget.Toast;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    private static final long Start_time = 1500000;
+
     private EditText edicionTime;
     private TextView  temporizador;
     private Button mBotonEditar;
-    private ImageButton mBotonIniciarPausar;
+    private Button mBotonPausar;
     private Button mBotonreset;
 
     private CountDownTimer mCountDownTimer;
@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean mtime;
 
     private long mInicioMilis;
-    private long mTiempoRestante = Start_time;
+    private long mTiempoRestante;
     private long mFinTime;
-//===========================================
+    private Thread thread;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,42 @@ public class MainActivity extends AppCompatActivity {
 
         //REGISTRO DEL MENU EDITAR-RESETEAR
         registerForContextMenu(findViewById(R.id.tiempo));
+
+        //frases
+        TextView temp1 = findViewById(R.id.tiempo);
+        String temp2 = temp1.getText().toString();
+        int temp = Integer.parseInt(temp2);
+        contadorTiempoFrases(temp);
+
+
+    }
+
+    public void contadorTiempoFrases(final int temp){
+
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (temp < 1){
+                    try {
+                        Thread.sleep(25000);
+
+                        String frase1 = "Siempre parece imposible hasta que se hace (Nelson Mandela)";
+                        String frase2 = "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas (Jim Ryun)";
+                        String frase3 = "Estudia el pasado si quieres intuir el futuro (Confucio)";
+
+                        int numero = (int)(Math.random()*3+1);
+                        String frasealeAtoria = "frase"+String.valueOf(numero);
+                        TextView frase = findViewById(R.id.frasesApoyo);
+                        frase.setText(frasealeAtoria);
+
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                        break;
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 
     //CREAR EL MENU
