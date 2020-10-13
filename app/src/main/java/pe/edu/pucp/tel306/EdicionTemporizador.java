@@ -76,7 +76,7 @@ public class EdicionTemporizador extends AppCompatActivity {
         }
         ///////////////////////////////////////////////////////// VALIDACION DEL Segundo DEL TRABAJO
 
-
+ //
 
 
           // SI NO HAY ERRORES SE ENVIA LA INFORMACION
