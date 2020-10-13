@@ -6,74 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/ponpodromo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CICLO PONPODROMO"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tiempoDescanso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.892"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.46" />
+
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imagenAliento"
         android:layout_width="172dp"
         android:layout_height="135dp"
-        android:layout_marginBottom="24dp"
+        android:contentDescription="TODO"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937"
         app:srcCompat="@drawable/ic_action_face" />
 
     <TextView
         android:id="@+id/tiempo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
         android:text="TEMPORIZADOR"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/playPausa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.361"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="295dp" />
+        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tiempoDescanso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginBottom="20dp"
         android:text="TIEMPO DE DESCANSO 05:00"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="225dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tiempo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/frasesApoyo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="MENSAJE DE APOYO"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="73dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CICLO PONPODROMO"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="205dp"
-        tools:layout_editor_absoluteY="157dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ponpodromo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/playPausa"
+        android:layout_width="57dp"
+        android:layout_height="52dp"
         android:background="#59000000"
-        app:srcCompat="@drawable/ic_action_play"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="417dp" />
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.667"
+        app:srcCompat="@drawable/ic_action_play" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/reseteo"
+        android:layout_width="75dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="212dp"
         android:background="#59000000"
-        app:srcCompat="@drawable/ic_action_reinicio"
-        tools:layout_editor_absoluteX="232dp"
-        tools:layout_editor_absoluteY="428dp" />
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/playPausa"
+        app:layout_constraintTop_toTopOf="@+id/playPausa"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_action_reinicio" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

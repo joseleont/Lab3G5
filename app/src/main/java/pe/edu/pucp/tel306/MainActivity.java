@@ -2,6 +2,8 @@ package pe.edu.pucp.tel306;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -33,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.editar:
 
                 //ABRIR ACTIVITY
+                Intent intent = new Intent(MainActivity.this,EdicionTemporizador.class);
+                int requestCode = 1;
+                startActivityForResult(intent,requestCode);
+
 
                 break;
             case R.id.resetear:

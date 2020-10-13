@@ -11,4 +11,8 @@ public class EdicionTemporizador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edicion_temporizador);
     }
+
+
+
+
 }
