@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView  temporizador;
     private Button mBotonEditar;
     private Button mBotonPausar;
-    private Button mBotonreset;
 
-    private CountDownTimer mCountDownTimer;
+    private CountDownTimer mCountDownTimer;// contador de reverso
 
     private boolean mtime;
 
     private long mInicioMilis;
-    private long mTiempoRestante;
+    private static final long tiempo_empieza = 1500000;
+    private long mTiempoRestante=tiempo_empieza;
     private long mFinTime;
     private Thread thread;
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 //====================================================
         edicionTime = findViewById(R.id.trabajoMinutos);
-        temporizador = findViewById(R.id.tiempo);
+
 
         mBotonEditar = findViewById(R.id.button);
        // mBotonIniciarPausar = findViewById(R.id.playPausa);
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         registerForContextMenu(findViewById(R.id.tiempo));
 
         //frases
-        TextView temp1 = findViewById(R.id.tiempo);
-        String temp2 = temp1.getText().toString();
+         temporizador = findViewById(R.id.tiempo);
+        String temp2 = temporizador.getText().toString();
         int temp = Integer.parseInt(temp2);
         contadorTiempoFrases(temp);
 
@@ -68,24 +68,23 @@ public class MainActivity extends AppCompatActivity {
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (temp < 1){
+
                     try {
                         Thread.sleep(25000);
 
                         String frase1 = "Siempre parece imposible hasta que se hace (Nelson Mandela)";
                         String frase2 = "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas (Jim Ryun)";
                         String frase3 = "Estudia el pasado si quieres intuir el futuro (Confucio)";
-
-                        int numero = (int)(Math.random()*3+1);
-                        String frasealeAtoria = "frase"+String.valueOf(numero);
-                        TextView frase = findViewById(R.id.frasesApoyo);
-                        frase.setText(frasealeAtoria);
-
+                        if (temp<1) {
+                            int numero = (int) (Math.random() * 3 + 1);
+                            String frasealeAtoria = "frase" + String.valueOf(numero);
+                            TextView frase = findViewById(R.id.frasesApoyo);
+                            frase.setText(frasealeAtoria);
+                        }
                     }catch (InterruptedException e){
                         e.printStackTrace();
-                        break;
                     }
-                }
+
             }
         });
         thread.start();
@@ -97,24 +96,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater().inflate(R.menu.menu_edicion_resetear,menu);
 
-        /*mBotonEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String editar=edicionTime.getText().toString();
-                if(editar.length()==0){
-                    Toast.makeText(MainActivity.this, "Tiene que agregar valor", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                long miliTime = Long.parseLong(editar)*60000;
-                if (miliTime == 0) {
-                    Toast.makeText(MainActivity.this, "Please enter a positive number", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            setTime(miliTime);// puede causar ERROR
-                edicionTime.setText("");
-            }
 
-        });*/
 
 
     }
@@ -122,9 +104,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void StartPause(View view){
         tiempoStart();
+        //pausarTiempo();
 
     }
 
+    private void pausarTiempo() {
+        mCountDownTimer.cancel();
+        mtime = false;
+        contadorTexto();
+    }
     public void tiempoStart(){
 
       mFinTime=System.currentTimeMillis()+mTiempoRestante;
@@ -146,14 +134,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void contadorTexto() {
-        //int hours = (int) (mTiempoRestante / 1000) / 3600;
-        int minutes = (int) ((mTiempoRestante / 1000) % 3600) / 60;
-        int seconds = (int) (mTiempoRestante / 1000) % 60;
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-        temporizador.setText(timeLeftFormatted);
 
-      //  String timeLeftFormatted;
-
+        int minutos = (int) ((mTiempoRestante / 1000) % 3600) / 60;
+        int segundos = (int) (mTiempoRestante / 1000) % 60;
+        String formatoNuevo = String.format(Locale.getDefault(), "%02d:%02d", minutos, segundos);
+        temporizador.setText(formatoNuevo);
     }
 
 
