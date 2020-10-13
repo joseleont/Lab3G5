@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode==1 && resultCode==RESULT_OK){
 
-            String infoActivity = data.getStringExtra("nombre");
+           //String infoActivity = data.getStringExtra("nj");
 
 
 
