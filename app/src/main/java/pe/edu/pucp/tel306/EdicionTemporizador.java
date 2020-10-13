@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class EdicionTemporizador extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class EdicionTemporizador extends AppCompatActivity {
 
         int validacionDeErrores=0;
 
-        TextView numeroCiclos=findViewById(R.id.textCiclos); //NUMERO DE CICLOS DEL POMODOROS
+        EditText numeroCiclos=findViewById(R.id.textCiclos); //NUMERO DE CICLOS DEL POMODOROS
 
 
         //VALIDACION DE LOS NUMERO DE CICLOS
@@ -40,7 +41,7 @@ public class EdicionTemporizador extends AppCompatActivity {
        ///////////////////////////////////////////////////////// VALIDACION DEL NUMEOR DE CICLOS
 
         //***************************************************************************************
-        TextView trabajoMinutos=findViewById(R.id.trabajoMinutos); //Minutos del trabajo
+        EditText trabajoMinutos=findViewById(R.id.trabajoMinutos); //Minutos del trabajo
 
         //VALIDACION DE LOS MINUTOS DEL TRABAJO
         if (trabajoMinutos.getText().toString().trim().equalsIgnoreCase("")){
@@ -60,7 +61,7 @@ public class EdicionTemporizador extends AppCompatActivity {
 
 
         //***************************************************************************************
-        TextView trabajoSegundos=findViewById(R.id.trabajoSegundos); //Segundos del trabajo
+        EditText trabajoSegundos=findViewById(R.id.trabajoSegundos); //Segundos del trabajo
         //VALIDACION DE LOS Segundos DEL TRABAJO
         if (trabajoSegundos.getText().toString().trim().equalsIgnoreCase("")){
             trabajoSegundos.setError("Debe ingresar los segundos");
@@ -76,15 +77,50 @@ public class EdicionTemporizador extends AppCompatActivity {
         }
         ///////////////////////////////////////////////////////// VALIDACION DEL Segundo DEL TRABAJO
 
- //
+        //***************************************************************************************
+        EditText descansoMinutos=findViewById(R.id.descansoMinutos); //Minutos del descanso
+
+        //VALIDACION DE LOS MINUTOS DEL descanso
+        if (descansoMinutos.getText().toString().trim().equalsIgnoreCase("")){
+            descansoMinutos.setError("Debe ingresar los minutos");
+            validacionDeErrores=1;
+
+        } else{
+            int descansoMinutosInt=Integer.parseInt(descansoMinutos.getText().toString());
+            if ((descansoMinutosInt>=61)&&(descansoMinutosInt<0)){
+                numeroCiclos.setError("El numero debe ser mayor a cero y menor a 61");
+                validacionDeErrores=1;
+
+            }
+        }
+        ///////////////////////////////////////////////////////// VALIDACION DEL MINUTOS DEL descanso
+
+
+        //***************************************************************************************
+        EditText descansoSegundos=findViewById(R.id.descansoSegundos); //Segundos del descanso
+        //VALIDACION DE LOS Segundos DEL descanso
+        if (descansoSegundos.getText().toString().trim().equalsIgnoreCase("")){
+            descansoSegundos.setError("Debe ingresar los segundos");
+            validacionDeErrores=1;
+
+        } else{
+            int descansoSegundosInt=Integer.parseInt(trabajoSegundos.getText().toString());
+            if ((descansoSegundosInt>=61)&&(descansoSegundosInt<0)){
+                trabajoSegundos.setError("El numero debe ser mayor a cero y menor a 61");
+                validacionDeErrores=1;
+
+            }
+        }
+        ///////////////////////////////////////////////////////// VALIDACION DEL Segundo DEL TRABAJO
+
 
 
           // SI NO HAY ERRORES SE ENVIA LA INFORMACION
         if (validacionDeErrores==0){
 
-
+             /*
             Intent intent= new Intent();
-            /*intent.putExtra("d");
+            intent.putExtra("d");
             setResult(RESULT_OK,intent);
              finish();*/
 
