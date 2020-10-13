@@ -186,7 +186,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode==1 && resultCode==RESULT_OK){
 
-           //String infoActivity = data.getStringExtra("nj");
+
+            int ciclos = data.getIntExtra("ciclos",0);
+
+            int trabajoMinutos = data.getIntExtra("trabajoMinutos",0);
+            int trabajoSegundos = data.getIntExtra("trabajoSegundos",0);
+
+            int descansoMinutos = data.getIntExtra("descansoMinutos",0);
+            int descansoSegundos = data.getIntExtra("descansoSegundos",0);
 
 
 
