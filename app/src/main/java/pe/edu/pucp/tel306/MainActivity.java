@@ -6,13 +6,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText edicionTime;
+    private TextView  temporizador;
+    private Button mBotonEditar;
+    private Button mBotonPausar;
+    private Button mBotonreset;
+
+    private CountDownTimer mCountDownTimer;
+
+    private boolean mtime;
+
+    private long mInicioMilis;
+    private long mTiempoRestante;
+    private long mFinTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
