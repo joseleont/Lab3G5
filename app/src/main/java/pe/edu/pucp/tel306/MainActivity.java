@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText edicionTime;
     private TextView  temporizador;
     private Button mBotonEditar;
+
     private Button mBotonPausar;
 
     private CountDownTimer mCountDownTimer;// contador de reverso
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         mBotonEditar = findViewById(R.id.button);
-       // mBotonIniciarPausar = findViewById(R.id.playPausa);
         //mButtonReset = findViewById(R.id.button_reset);
 
 
@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
     public void contadorTiempoFrases(final int temp){
 
@@ -97,22 +100,17 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_edicion_resetear,menu);
 
 
-
-
     }
     //BOTONES DEL MENU
 
     public void StartPause(View view){
-        tiempoStart();
-        //pausarTiempo();
-
+        if(mtime){
+            Pausa();
+        } else{
+            tiempoStart();
+        }
     }
 
-    private void pausarTiempo() {
-        mCountDownTimer.cancel();
-        mtime = false;
-        contadorTexto();
-    }
     public void tiempoStart(){
 
       mFinTime=System.currentTimeMillis()+mTiempoRestante;
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
           @Override
           public void onFinish() {
                 mtime=false;
-                contadorTexto();
+                Botones();
           }
       }.start();
       mtime=true;
@@ -141,6 +139,22 @@ public class MainActivity extends AppCompatActivity {
         temporizador.setText(formatoNuevo);
     }
 
+    private void Pausa(){
+        mCountDownTimer.cancel();
+        mtime=false;
+        contadorTexto();
+    }
+    private void Botones(){
+if (mtime){
+imgenPause     = imagen.setImageResource(R.drawable.imagePause);
+
+
+
+
+
+
+}
+    }
 
     //======================================================
 
