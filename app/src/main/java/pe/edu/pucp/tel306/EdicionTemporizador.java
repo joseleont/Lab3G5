@@ -2,6 +2,7 @@ package pe.edu.pucp.tel306;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class EdicionTemporizador extends AppCompatActivity {
@@ -13,6 +14,10 @@ public class EdicionTemporizador extends AppCompatActivity {
     }
 
 
+    Intent intent= new Intent();
+    /*intent.putExtra("d");
+    setResult(RESULT_OK,intent);
+    finish();*/
 
 
 }

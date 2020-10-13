@@ -1,6 +1,7 @@
 package pe.edu.pucp.tel306;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -50,6 +51,23 @@ public class MainActivity extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
+    //INFO QUE VIENE DEL ACTIVITY EDIFIION TEMPORIZADOR
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==1 && resultCode==RESULT_OK){
+
+            String infoActivity = data.getStringExtra("nombre");
+
+
+
+
+        }
+
+    }
+
+    //MENU DE AYUDA
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_ayuda,menu);
