@@ -68,24 +68,23 @@ public class MainActivity extends AppCompatActivity {
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (temp < 1){
+
                     try {
                         Thread.sleep(25000);
 
                         String frase1 = "Siempre parece imposible hasta que se hace (Nelson Mandela)";
                         String frase2 = "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas (Jim Ryun)";
                         String frase3 = "Estudia el pasado si quieres intuir el futuro (Confucio)";
-
-                        int numero = (int)(Math.random()*3+1);
-                        String frasealeAtoria = "frase"+String.valueOf(numero);
-                        TextView frase = findViewById(R.id.frasesApoyo);
-                        frase.setText(frasealeAtoria);
-
+                        if (temp<1) {
+                            int numero = (int) (Math.random() * 3 + 1);
+                            String frasealeAtoria = "frase" + String.valueOf(numero);
+                            TextView frase = findViewById(R.id.frasesApoyo);
+                            frase.setText(frasealeAtoria);
+                        }
                     }catch (InterruptedException e){
                         e.printStackTrace();
-                        break;
                     }
-                }
+
             }
         });
         thread.start();
