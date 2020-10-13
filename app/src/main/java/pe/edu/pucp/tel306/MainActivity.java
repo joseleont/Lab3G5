@@ -25,18 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText edicionTime;
     private TextView  temporizador;
+    private TextView  tiempoDescanso;
     private Button mBotonEditar;
-
-    private Button mBotonPausar;
-
-    private CountDownTimer mCountDownTimer;// contador de reverso
-
+    private ImageView imagen;
+    private CountDownTimer mCountDownTimer;// Clase de contador en reverso
     private boolean mtime;
-
-    private long mInicioMilis;
-    private static final long tiempo_empieza = 1500000;
+    private static final long tiempo_empieza = 1500000; // Iniciador
+    private static final long descanso = 300000;// Iniciador
+    private long tiempito=descanso;
     private long mTiempoRestante=tiempo_empieza;
-    private long mFinTime;
     private Thread thread;
 
 
@@ -45,13 +42,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //====================================================
-        edicionTime = findViewById(R.id.trabajoMinutos);
-
+        edicionTime = findViewById(R.id.trabajoMinutos);// se llama el EditText para la edici[on del contador
+        tiempoDescanso= findViewById(R.id.tiempoDescanso);// se llama el EditText para el contador de tiempo de descanso
 
         mBotonEditar = findViewById(R.id.button);
-        //mButtonReset = findViewById(R.id.button_reset);
-
-
         //REGISTRO DEL MENU EDITAR-RESETEAR
         registerForContextMenu(findViewById(R.id.tiempo));
 
@@ -63,9 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
-
+    public void descansoTime(){
+        int minutos = (int) ((descanso / 1000) % 3600) / 60;// Converte a minutos
+        int segundos = (int) (descanso / 1000) % 60;//Convierte a segundos
+        String forma = String.format(Locale.getDefault(), "%02d:%02d", minutos, segundos);// se da el formato a MM:ss
+        tiempoDescanso.setText(forma);// se set en el EditText
+    }
 
     public void contadorTiempoFrases(final int temp){
 
@@ -103,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //BOTONES DEL MENU
-
+// Se usa para pausar o iniciar el temporizador
     public void StartPause(View view){
         if(mtime){
             Pausa();
@@ -111,20 +108,18 @@ public class MainActivity extends AppCompatActivity {
             tiempoStart();
         }
     }
-
+    // Logica para que empiece el temporizador
     public void tiempoStart(){
 
-      mFinTime=System.currentTimeMillis()+mTiempoRestante;
-      mCountDownTimer=new CountDownTimer(mTiempoRestante, 1000) {
+      mCountDownTimer=new CountDownTimer(mTiempoRestante, 1000) { // Toma como parametros el timpempo de inicio y la duracion de cambio (que es 1segundo)
           @Override
           public void onTick(long millisUntilFinished) {
               mTiempoRestante=millisUntilFinished;
-              contadorTexto();
+              contadorTexto();// el valor se le manda para expresarlo en el formato MM:ss
           }
-
           @Override
-          public void onFinish() {
-                mtime=false;
+          public void onFinish() {// Cuando finalice se muestra los botones condicionados
+                mtime=false;// el tiempo no esta avanzando
                 Botones();
           }
       }.start();
@@ -132,29 +127,29 @@ public class MainActivity extends AppCompatActivity {
       contadorTexto();
     }
 
-    private void contadorTexto() {
+    private void contadorTexto() {// Para el temporizador principal
 
-        int minutos = (int) ((mTiempoRestante / 1000) % 3600) / 60;
-        int segundos = (int) (mTiempoRestante / 1000) % 60;
-        String formatoNuevo = String.format(Locale.getDefault(), "%02d:%02d", minutos, segundos);
-        temporizador.setText(formatoNuevo);
+        int minutos = (int) ((mTiempoRestante / 1000) % 3600) / 60;// Converte a minutos
+        int segundos = (int) (mTiempoRestante / 1000) % 60;// Converte a segundos
+        String formatoNuevo = String.format(Locale.getDefault(), "%02d:%02d", minutos, segundos);// se da el formato
+        temporizador.setText(formatoNuevo);// Se setea en el EditText
     }
 
     private void Pausa(){
-        mCountDownTimer.cancel();
-        mtime=false;
+        mCountDownTimer.cancel();// Al contador se le detiene
+        mtime=false;// El tiempo no esta avanzndo
         contadorTexto();
     }
     private void Botones(){
 if (mtime){
-    ImageView imagen=findViewById(R.id.imagenAliento);
-    imagen.setImageResource(R.drawable.ic_action_pausa);
-
-
-
-
-
-
+     imagen=findViewById(R.id.playPausa);
+    imagen.setImageResource(R.drawable.ic_action_pausa);// la imagen se le cambia al pausa
+}else{
+    if(mTiempoRestante<1000){// el boton de play es visible cuando termina el temporizador
+        imagen.setVisibility(View.VISIBLE);
+    }else {
+        imagen.setVisibility(View.INVISIBLE);
+    }
 }
     }
 
@@ -170,9 +165,7 @@ if (mtime){
                 Intent intent = new Intent(MainActivity.this,EdicionTemporizador.class);
                 int requestCode = 1;
                 startActivityForResult(intent,requestCode);
-
-
-                break;
+        break;
             case R.id.resetear:
 
                 break;

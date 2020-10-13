@@ -101,4 +101,12 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_action_reinicio" />
 
+    <ImageView
+        android:id="@+id/botonPausa"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/ic_action_pausa"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="355dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
