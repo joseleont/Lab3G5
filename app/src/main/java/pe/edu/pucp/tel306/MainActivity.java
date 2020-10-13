@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -46,6 +48,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_ayuda,menu);
+        return true;
+    }
+
+    public void clickHelp (MenuItem menu){
+        Log.d("ayuda","se abre activity ayuda");
+        Intent intent = new Intent(MainActivity.this, ActivityAyuda.class);
+        startActivity(intent);
     }
 
 

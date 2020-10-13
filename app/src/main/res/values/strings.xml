@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Lab3G5</string>
+    <string name="spinner1">Tecnica Pomodoro™ es un metodo de ahorro de tiempo desarrollado por Francesco Cirillo
+        a fines de 1980s. La tecnica usa un timer para repartir trabajos en intervalos de tiempo separados por descansos.
+        La tecnica Pomodoro incrementa la productividad tomando descansos cortos cada cierto tiempo.</string>
+    <string name ="spinner2">
+        1. Decida la tarea a realizar, establezca los temporizadores en 25 minutos para un "Pomodoro"
+        2. Trabaja en la tarea hasta que se complete el temporizador
+        3. Después de completar el temporizador, coloque una marca de verificación en la lista de tareas pendientes
+        4. Tómate un breve descanso de 5 minutos
+        5. Después de cuatro "Pomodoro", tómate un descanso
+        6. Repita el paso 1
+    </string>
+    <string name ="spinner3">
+        Para más info:
+        Visite http://www.tomatotimers.com/
+        Busque la aplicación en iOs: TOMATO TIMERS
+    </string>
 </resources>
