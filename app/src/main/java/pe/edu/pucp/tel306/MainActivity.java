@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -146,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void Botones(){
 if (mtime){
-imgenPause     = imagen.setImageResource(R.drawable.imagePause);
+    ImageView imagen=findViewById(R.id.imagenAliento);
+    imagen.setImageResource(R.drawable.ic_action_pausa);
 
 
 
