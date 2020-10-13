@@ -149,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode==1 && resultCode==RESULT_OK){
 
-
             int ciclos = data.getIntExtra("ciclos",0);
 
             int trabajoMinutos = data.getIntExtra("trabajoMinutos",0);
@@ -157,9 +156,6 @@ public class MainActivity extends AppCompatActivity {
 
             int descansoMinutos = data.getIntExtra("descansoMinutos",0);
             int descansoSegundos = data.getIntExtra("descansoSegundos",0);
-
-
-
 
         }
 
