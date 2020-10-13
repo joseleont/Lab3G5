@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private long mInicioMilis;
     private long mTiempoRestante;
     private long mFinTime;
+    private Thread thread;
 
 
     @Override
@@ -40,6 +41,42 @@ public class MainActivity extends AppCompatActivity {
 
         //REGISTRO DEL MENU EDITAR-RESETEAR
         registerForContextMenu(findViewById(R.id.tiempo));
+
+        //frases
+        TextView temp1 = findViewById(R.id.tiempo);
+        String temp2 = temp1.getText().toString();
+        int temp = Integer.parseInt(temp2);
+        contadorTiempoFrases(temp);
+
+
+    }
+
+    public void contadorTiempoFrases(final int temp){
+
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (temp < 1){
+                    try {
+                        Thread.sleep(25000);
+
+                        String frase1 = "Siempre parece imposible hasta que se hace (Nelson Mandela)";
+                        String frase2 = "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas (Jim Ryun)";
+                        String frase3 = "Estudia el pasado si quieres intuir el futuro (Confucio)";
+
+                        int numero = (int)(Math.random()*3+1);
+                        String frasealeAtoria = "frase"+String.valueOf(numero);
+                        TextView frase = findViewById(R.id.frasesApoyo);
+                        frase.setText(frasealeAtoria);
+
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                        break;
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 
     //CREAR EL MENU
@@ -70,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
+    //Frases de ayuda
+
+
     //INFO QUE VIENE DEL ACTIVITY EDIFIION TEMPORIZADOR
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -98,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ActivityAyuda.class);
         startActivity(intent);
     }
+
+
 
 
 
