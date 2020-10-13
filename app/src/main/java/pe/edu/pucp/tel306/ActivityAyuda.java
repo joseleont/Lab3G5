@@ -46,4 +46,9 @@ public class ActivityAyuda extends AppCompatActivity {
         });
 
     }
+
+    public void btnAtras (View view){
+        finish();
+    }
+
 }
